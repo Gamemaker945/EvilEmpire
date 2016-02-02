@@ -10,28 +10,47 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Constants
     struct Constants {
         struct MasterLayerPadding {
             static let width:CGFloat = 15.0
             static let height:CGFloat = 15.0
         }
+        
+        struct Tiles {
+            static let count = 10
+            static let letters = ["E", "V", "I", "L", "E", "M", "P", "I", "R", "E"]
+            static let spacingGap:CGFloat = 5
+            static let leftPadding:CGFloat = 25
+            static let rightPadding:CGFloat = 25
+        }
     }
     
     
+    // MARK: - Variables
+    // Layer vars
     var spaceEffectsLayer: UIView!
     var masterForegroundLayer: UIView!
     var glassLayer: UIView!
     var tileLayer: UIView!
     var uiLayer: UIView!
     
+    // Tiles
+    var tiles: [LetterTile] = []
     
     
+    // MARK: - Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setup the game layers
         spaceEffectsLayer = UIView (frame: self.view.bounds)
-        self.view .addSubview(spaceEffectsLayer)
+        self.view.addSubview(spaceEffectsLayer)
+        
+        let spaceBG = UIImageView (frame: spaceEffectsLayer.bounds)
+        spaceBG.image = UIImage (named: "StarField")
+        self.spaceEffectsLayer.addSubview(spaceBG)
         
         // Extend the interace several pixels beyond the edges of the screen. This will allow
         // for the "explosion shaking" effect (I hope)
@@ -39,22 +58,37 @@ class ViewController: UIViewController {
         masterForegroundLayer = UIView (frame: masterFGFrame)
         self.view .addSubview(masterForegroundLayer)
         
-        let glassLayer = UIView (frame: masterForegroundLayer.bounds)
+        glassLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(glassLayer)
         
-        let tileLayer = UIView (frame: masterForegroundLayer.bounds)
+        tileLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(tileLayer)
         
-        let uiLayer = UIView (frame: masterForegroundLayer.bounds)
+        uiLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(uiLayer)
+    
+        createTiles()
+    }
+
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func createTiles () {
+        tiles = []
+        
+        let availableWidth = CGRectGetWidth(spaceEffectsLayer.frame) - Constants.Tiles.leftPadding - Constants.Tiles.rightPadding
+        let tileWidth = (availableWidth - Constants.Tiles.spacingGap * CGFloat(Constants.Tiles.count - 1)) / CGFloat(Constants.Tiles.count)
+        for index in 0...Constants.Tiles.count-1 {
+            let letter = Constants.Tiles.letters[index]
+            let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), 50, tileWidth, tileWidth), letter: letter)
+            tileLayer.addSubview(tile)
+        }
     }
-
 
 }
 
