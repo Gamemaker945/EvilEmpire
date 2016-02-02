@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C6284561C60F85100D726DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284551C60F85100D726DD /* AppDelegate.swift */; };
+		9C6284581C60F85100D726DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284571C60F85100D726DD /* ViewController.swift */; };
+		9C62845B1C60F85100D726DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C6284591C60F85100D726DD /* Main.storyboard */; };
+		9C62845D1C60F85100D726DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C62845C1C60F85100D726DD /* Assets.xcassets */; };
+		9C6284601C60F85100D726DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C62845E1C60F85100D726DD /* LaunchScreen.storyboard */; };
+		9C62846B1C60F85100D726DD /* EvilEmpireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62846A1C60F85100D726DD /* EvilEmpireTests.swift */; };
+		9C6284761C60F85100D726DD /* EvilEmpireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284751C60F85100D726DD /* EvilEmpireUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9C6284671C60F85100D726DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C62844A1C60F85100D726DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C6284511C60F85100D726DD;
+			remoteInfo = EvilEmpire;
+		};
+		9C6284721C60F85100D726DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C62844A1C60F85100D726DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C6284511C60F85100D726DD;
+			remoteInfo = EvilEmpire;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9C6284521C60F85100D726DD /* EvilEmpire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EvilEmpire.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C6284551C60F85100D726DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9C6284571C60F85100D726DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9C62845A1C60F85100D726DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C62845C1C60F85100D726DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C62845F1C60F85100D726DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9C6284611C60F85100D726DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C6284661C60F85100D726DD /* EvilEmpireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvilEmpireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C62846A1C60F85100D726DD /* EvilEmpireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvilEmpireTests.swift; sourceTree = "<group>"; };
+		9C62846C1C60F85100D726DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C6284711C60F85100D726DD /* EvilEmpireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvilEmpireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C6284751C60F85100D726DD /* EvilEmpireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvilEmpireUITests.swift; sourceTree = "<group>"; };
+		9C6284771C60F85100D726DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C62844F1C60F85100D726DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C6284631C60F85100D726DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C62846E1C60F85100D726DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C6284491C60F85100D726DD = {
+			isa = PBXGroup;
+			children = (
+				9C6284541C60F85100D726DD /* EvilEmpire */,
+				9C6284691C60F85100D726DD /* EvilEmpireTests */,
+				9C6284741C60F85100D726DD /* EvilEmpireUITests */,
+				9C6284531C60F85100D726DD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C6284531C60F85100D726DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C6284521C60F85100D726DD /* EvilEmpire.app */,
+				9C6284661C60F85100D726DD /* EvilEmpireTests.xctest */,
+				9C6284711C60F85100D726DD /* EvilEmpireUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C6284541C60F85100D726DD /* EvilEmpire */ = {
+			isa = PBXGroup;
+			children = (
+				9C6284831C60F91D00D726DD /* Source */,
+				9C6284551C60F85100D726DD /* AppDelegate.swift */,
+				9C6284591C60F85100D726DD /* Main.storyboard */,
+				9C62845C1C60F85100D726DD /* Assets.xcassets */,
+				9C62845E1C60F85100D726DD /* LaunchScreen.storyboard */,
+				9C6284611C60F85100D726DD /* Info.plist */,
+			);
+			path = EvilEmpire;
+			sourceTree = "<group>";
+		};
+		9C6284691C60F85100D726DD /* EvilEmpireTests */ = {
+			isa = PBXGroup;
+			children = (
+				9C62846A1C60F85100D726DD /* EvilEmpireTests.swift */,
+				9C62846C1C60F85100D726DD /* Info.plist */,
+			);
+			path = EvilEmpireTests;
+			sourceTree = "<group>";
+		};
+		9C6284741C60F85100D726DD /* EvilEmpireUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9C6284751C60F85100D726DD /* EvilEmpireUITests.swift */,
+				9C6284771C60F85100D726DD /* Info.plist */,
+			);
+			path = EvilEmpireUITests;
+			sourceTree = "<group>";
+		};
+		9C6284831C60F91D00D726DD /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				9C6284841C60F91D00D726DD /* GameObjects */,
+				9C6284851C60F91D00D726DD /* Libraries */,
+				9C6284861C60F91D00D726DD /* Utilities */,
+				9C6284871C60F91D00D726DD /* Views */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		9C6284841C60F91D00D726DD /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		9C6284851C60F91D00D726DD /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		9C6284861C60F91D00D726DD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9C6284871C60F91D00D726DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9C6284571C60F85100D726DD /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C6284511C60F85100D726DD /* EvilEmpire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C62847A1C60F85100D726DD /* Build configuration list for PBXNativeTarget "EvilEmpire" */;
+			buildPhases = (
+				9C62844E1C60F85100D726DD /* Sources */,
+				9C62844F1C60F85100D726DD /* Frameworks */,
+				9C6284501C60F85100D726DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EvilEmpire;
+			productName = EvilEmpire;
+			productReference = 9C6284521C60F85100D726DD /* EvilEmpire.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9C6284651C60F85100D726DD /* EvilEmpireTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C62847D1C60F85100D726DD /* Build configuration list for PBXNativeTarget "EvilEmpireTests" */;
+			buildPhases = (
+				9C6284621C60F85100D726DD /* Sources */,
+				9C6284631C60F85100D726DD /* Frameworks */,
+				9C6284641C60F85100D726DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C6284681C60F85100D726DD /* PBXTargetDependency */,
+			);
+			name = EvilEmpireTests;
+			productName = EvilEmpireTests;
+			productReference = 9C6284661C60F85100D726DD /* EvilEmpireTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9C6284701C60F85100D726DD /* EvilEmpireUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C6284801C60F85100D726DD /* Build configuration list for PBXNativeTarget "EvilEmpireUITests" */;
+			buildPhases = (
+				9C62846D1C60F85100D726DD /* Sources */,
+				9C62846E1C60F85100D726DD /* Frameworks */,
+				9C62846F1C60F85100D726DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9C6284731C60F85100D726DD /* PBXTargetDependency */,
+			);
+			name = EvilEmpireUITests;
+			productName = EvilEmpireUITests;
+			productReference = 9C6284711C60F85100D726DD /* EvilEmpireUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C62844A1C60F85100D726DD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Christian Henne";
+				TargetAttributes = {
+					9C6284511C60F85100D726DD = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					9C6284651C60F85100D726DD = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 9C6284511C60F85100D726DD;
+					};
+					9C6284701C60F85100D726DD = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 9C6284511C60F85100D726DD;
+					};
+				};
+			};
+			buildConfigurationList = 9C62844D1C60F85100D726DD /* Build configuration list for PBXProject "EvilEmpire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C6284491C60F85100D726DD;
+			productRefGroup = 9C6284531C60F85100D726DD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C6284511C60F85100D726DD /* EvilEmpire */,
+				9C6284651C60F85100D726DD /* EvilEmpireTests */,
+				9C6284701C60F85100D726DD /* EvilEmpireUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C6284501C60F85100D726DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C6284601C60F85100D726DD /* LaunchScreen.storyboard in Resources */,
+				9C62845D1C60F85100D726DD /* Assets.xcassets in Resources */,
+				9C62845B1C60F85100D726DD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C6284641C60F85100D726DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C62846F1C60F85100D726DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C62844E1C60F85100D726DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C6284581C60F85100D726DD /* ViewController.swift in Sources */,
+				9C6284561C60F85100D726DD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C6284621C60F85100D726DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C62846B1C60F85100D726DD /* EvilEmpireTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C62846D1C60F85100D726DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C6284761C60F85100D726DD /* EvilEmpireUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9C6284681C60F85100D726DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C6284511C60F85100D726DD /* EvilEmpire */;
+			targetProxy = 9C6284671C60F85100D726DD /* PBXContainerItemProxy */;
+		};
+		9C6284731C60F85100D726DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C6284511C60F85100D726DD /* EvilEmpire */;
+			targetProxy = 9C6284721C60F85100D726DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9C6284591C60F85100D726DD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C62845A1C60F85100D726DD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9C62845E1C60F85100D726DD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C62845F1C60F85100D726DD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C6284781C60F85100D726DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9C6284791C60F85100D726DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C62847B1C60F85100D726DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EvilEmpire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evilempire.EvilEmpire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9C62847C1C60F85100D726DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = EvilEmpire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evilempire.EvilEmpire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9C62847E1C60F85100D726DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EvilEmpireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evilempire.EvilEmpireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EvilEmpire.app/EvilEmpire";
+			};
+			name = Debug;
+		};
+		9C62847F1C60F85100D726DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EvilEmpireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evilempire.EvilEmpireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EvilEmpire.app/EvilEmpire";
+			};
+			name = Release;
+		};
+		9C6284811C60F85100D726DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = EvilEmpireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evilempire.EvilEmpireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = EvilEmpire;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		9C6284821C60F85100D726DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = EvilEmpireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evilempire.EvilEmpireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = EvilEmpire;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C62844D1C60F85100D726DD /* Build configuration list for PBXProject "EvilEmpire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C6284781C60F85100D726DD /* Debug */,
+				9C6284791C60F85100D726DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C62847A1C60F85100D726DD /* Build configuration list for PBXNativeTarget "EvilEmpire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C62847B1C60F85100D726DD /* Debug */,
+				9C62847C1C60F85100D726DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C62847D1C60F85100D726DD /* Build configuration list for PBXNativeTarget "EvilEmpireTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C62847E1C60F85100D726DD /* Debug */,
+				9C62847F1C60F85100D726DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C6284801C60F85100D726DD /* Build configuration list for PBXNativeTarget "EvilEmpireUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C6284811C60F85100D726DD /* Debug */,
+				9C6284821C60F85100D726DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C62844A1C60F85100D726DD /* Project object */;
+}
