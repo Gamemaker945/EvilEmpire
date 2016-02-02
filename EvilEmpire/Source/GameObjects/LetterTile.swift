@@ -51,10 +51,47 @@ class LetterTile: UIView {
         letterLabel.font = UIFont.systemFontOfSize(30)
         letterLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(letterLabel)
+        
+        
+        let pan = UIPanGestureRecognizer(target:self, action:"pan:")
+        pan.maximumNumberOfTouches = 1
+        pan.minimumNumberOfTouches = 1
+        self.gestureRecognizers = [pan]
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    var lastLocation: CGPoint = CGPointMake(0,0)
+    func pan (recognizer:UIPanGestureRecognizer) {
+        let translation  = recognizer.translationInView(self.superview!)
+        self.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
+        
+        switch recognizer.state {
+        case .Ended:
+            selected = false
+        default: break;
+            
+        }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // Promote the touched view
+        self.superview?.bringSubviewToFront(self)
+        
+        // Remember original location
+        lastLocation = self.center
+        selected = true
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        selected = false
+    }
+    
+
+
 
 }

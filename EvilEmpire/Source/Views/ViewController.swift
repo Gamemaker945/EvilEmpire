@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     
     // Tiles
     var tiles: [LetterTile] = []
+    var activeTile: LetterTile?
     
     
     // MARK: - Lifecycle Methods
@@ -62,10 +63,10 @@ class ViewController: UIViewController {
         self.masterForegroundLayer.addSubview(glassLayer)
         
         tileLayer = UIView (frame: masterForegroundLayer.bounds)
-        self.masterForegroundLayer.addSubview(tileLayer)
         
         uiLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(uiLayer)
+        self.masterForegroundLayer.addSubview(tileLayer)
     
         createTiles()
     }
@@ -87,8 +88,11 @@ class ViewController: UIViewController {
             let letter = Constants.Tiles.letters[index]
             let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), 50, tileWidth, tileWidth), letter: letter)
             tileLayer.addSubview(tile)
+
         }
     }
+    
+    var selectedView: UIView?
 
 }
 
