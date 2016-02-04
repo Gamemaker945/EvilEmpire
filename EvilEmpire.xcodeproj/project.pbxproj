@@ -15,6 +15,8 @@
 		9C62846B1C60F85100D726DD /* EvilEmpireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62846A1C60F85100D726DD /* EvilEmpireTests.swift */; };
 		9C6284761C60F85100D726DD /* EvilEmpireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284751C60F85100D726DD /* EvilEmpireUITests.swift */; };
 		9C62848A1C60FFA400D726DD /* LetterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284891C60FFA400D726DD /* LetterTile.swift */; };
+		9C6284E11C63B1FC00D726DD /* LetterHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284E01C63B1FC00D726DD /* LetterHole.swift */; };
+		9C6284E31C63B87200D726DD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284E21C63B87200D726DD /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		9C6284751C60F85100D726DD /* EvilEmpireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvilEmpireUITests.swift; sourceTree = "<group>"; };
 		9C6284771C60F85100D726DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C6284891C60FFA400D726DD /* LetterTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTile.swift; sourceTree = "<group>"; };
+		9C6284E01C63B1FC00D726DD /* LetterHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterHole.swift; sourceTree = "<group>"; };
+		9C6284E21C63B87200D726DD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				9C6284891C60FFA400D726DD /* LetterTile.swift */,
+				9C6284E01C63B1FC00D726DD /* LetterHole.swift */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 		9C6284861C60F91D00D726DD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				9C6284E21C63B87200D726DD /* Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -302,6 +308,8 @@
 				9C6284581C60F85100D726DD /* ViewController.swift in Sources */,
 				9C6284561C60F85100D726DD /* AppDelegate.swift in Sources */,
 				9C62848A1C60FFA400D726DD /* LetterTile.swift in Sources */,
+				9C6284E31C63B87200D726DD /* Utilities.swift in Sources */,
+				9C6284E11C63B1FC00D726DD /* LetterHole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

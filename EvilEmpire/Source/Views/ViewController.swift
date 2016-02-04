@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         struct Tiles {
             static let count = 10
-            static let letters = ["E", "V", "I", "L", "E", "M", "P", "I", "R", "E"]
+            static var letters = ["E", "V", "I", "L", "E", "M", "P", "I", "R", "E"]
             static let spacingGap:CGFloat = 5
             static let leftPadding:CGFloat = 25
             static let rightPadding:CGFloat = 25
@@ -38,6 +38,12 @@ class ViewController: UIViewController {
     // Tiles
     var tiles: [LetterTile] = []
     var activeTile: LetterTile?
+   
+    // Holes
+    var holes: [LetterHole] = []
+    
+    var glass:UIImageView!
+    
     
     
     // MARK: - Lifecycle Methods
@@ -68,7 +74,10 @@ class ViewController: UIViewController {
         self.masterForegroundLayer.addSubview(uiLayer)
         self.masterForegroundLayer.addSubview(tileLayer)
     
+        createGlass()
         createTiles()
+        
+        createHoles ()
     }
 
     
@@ -79,20 +88,83 @@ class ViewController: UIViewController {
     }
 
     
+    private func createGlass () {
+        glass = UIImageView (frame: glassLayer.bounds)
+        glass.image = UIImage (named: "Glass")
+        glass.alpha = 0.6
+        glassLayer.addSubview(glass)
+    }
+    
     private func createTiles () {
         tiles = []
         
-        let availableWidth = CGRectGetWidth(spaceEffectsLayer.frame) - Constants.Tiles.leftPadding - Constants.Tiles.rightPadding
+        let randomLetters = newShuffledArray(Constants.Tiles.letters)
+        let availableWidth = CGRectGetWidth(tileLayer.frame) - Constants.Tiles.leftPadding - Constants.Tiles.rightPadding
         let tileWidth = (availableWidth - Constants.Tiles.spacingGap * CGFloat(Constants.Tiles.count - 1)) / CGFloat(Constants.Tiles.count)
         for index in 0...Constants.Tiles.count-1 {
-            let letter = Constants.Tiles.letters[index]
-            let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), 50, tileWidth, tileWidth), letter: letter)
+            let letter = randomLetters[index]
+            let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), CGRectGetHeight(tileLayer.frame) - tileWidth - 30, tileWidth, tileWidth), letter: letter as! String)
             tileLayer.addSubview(tile)
-
+            tiles.append(tile)
         }
     }
     
-    var selectedView: UIView?
+    private func createHoles () {
+        
+        // Get the tile width/height
+        let tileWidth = CGRectGetWidth(tiles[0].frame)
+        
+        let r = glass.bounds;
+
+        let lay = CAShapeLayer ();
+        let path = CGPathCreateMutable();
+        
+        let spacing = Constants.Tiles.spacingGap * 10
+
+        // Create 4 holes near top, and 6 holes below that
+        let availableWidth = CGRectGetWidth(tileLayer.frame) - Constants.Tiles.leftPadding - Constants.Tiles.rightPadding
+        let widthOf4TilesAndSpaces = tileWidth * 4 + spacing * 3
+        var leftStart = (availableWidth - widthOf4TilesAndSpaces) / 2.0
+        
+        for i in 0...3 {
+            let rect = CGRectMake(leftStart + (CGFloat(i) * (tileWidth+spacing)),40,tileWidth,tileWidth)
+            let hole = LetterHole (frame: rect, letter: Constants.Tiles.letters[i])
+            tileLayer.addSubview(hole)
+            holes.append(hole)
+            CGPathAddPath(path, nil, Utilities.newPathForRoundedRect(rect, radius:6))
+        }
+        
+        let widthOf6TilesAndSpaces = tileWidth * 6 + spacing * 5
+        leftStart = (availableWidth - widthOf6TilesAndSpaces) / 2.0
+        
+        for i in 0...5 {
+            let rect = CGRectMake(leftStart + (CGFloat(i) * (tileWidth+spacing)),40+tileWidth+10,tileWidth,tileWidth)
+            let hole = LetterHole (frame: rect, letter: Constants.Tiles.letters[i+4])
+            tileLayer.addSubview(hole)
+            holes.append(hole)
+            CGPathAddPath(path, nil, Utilities.newPathForRoundedRect(rect, radius:6))
+        }
+        CGPathAddRect(path, nil, r);
+        
+        
+        lay.path = path;
+//        CGPathRelease(path);
+        lay.fillRule = kCAFillRuleEvenOdd;
+        glass.layer.mask = lay;
+    }
+    
+    
+    func newShuffledArray(array:NSArray) -> NSArray {
+        let mutableArray = array.mutableCopy() as! NSMutableArray
+        let count = mutableArray.count
+        if count>1 {
+            for var i=count-1;i>0;--i{
+                mutableArray.exchangeObjectAtIndex(i, withObjectAtIndex: Int(arc4random_uniform(UInt32(i+1))))
+            }
+        }
+        return mutableArray as NSArray
+    }
 
 }
+
 

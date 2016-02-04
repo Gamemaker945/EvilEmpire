@@ -73,6 +73,7 @@ class LetterTile: UIView {
         switch recognizer.state {
         case .Ended:
             selected = false
+            self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
         default: break;
             
         }
@@ -85,10 +86,13 @@ class LetterTile: UIView {
         // Remember original location
         lastLocation = self.center
         selected = true
+        
+        self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         selected = false
+        self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
     }
     
 
