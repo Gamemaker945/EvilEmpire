@@ -38,6 +38,8 @@ class ViewController: UIViewController {
     // Tiles
     var tiles: [LetterTile] = []
     var activeTile: LetterTile?
+    var startLoc: CGPoint?
+
    
     // Holes
     var holes: [LetterHole] = []
@@ -105,6 +107,7 @@ class ViewController: UIViewController {
         for index in 0...Constants.Tiles.count-1 {
             let letter = randomLetters[index]
             let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), CGRectGetHeight(tileLayer.frame) - tileWidth - 100, tileWidth, tileWidth), letter: letter as! String)
+            tile.delegate = self
             tileLayer.addSubview(tile)
             tiles.append(tile)
         }
@@ -112,7 +115,7 @@ class ViewController: UIViewController {
     
     private func createScrollingAlert () {
         let alert = ScrollingAlert (frame: CGRectMake(0, CGRectGetMaxY(uiLayer.frame)-55, CGRectGetWidth(uiLayer.frame), 40))
-        alert.setAlertMessage("ALERT!!! Hull Breach.... Plug holes to avoid oxygen loss..... ALERT!!!!")
+        alert.setAlertMessage("ALERT!!! .... Hull Breach .... Plug holes to avoid oxygen loss .... ALERT!!!!")
         uiLayer.addSubview(alert)
     }
     
@@ -174,4 +177,44 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController : LetterTileDelegate {
 
+    
+    func tileDragEnded (tile: LetterTile) {
+        var found = false
+        for hole in self.holes {
+            if hole.didPlugHole(tile) {
+                
+                if hole.letter == tile.letter {
+                    tile.center = hole.center
+                    self.activeTile = nil
+                    self.startLoc = nil
+                    found = true
+                    break
+                } else {
+                    returnActiveTile()
+                }
+            }
+        }
+        
+        if found == false {
+            returnActiveTile()
+        }
+    }
+    
+    func tileDragBegan (tile: LetterTile) {
+        activeTile = tile
+        startLoc = tile.center
+    }
+    
+    private func returnActiveTile () {
+        if let tile = self.activeTile {
+            if let pos = self.startLoc {
+                tile.center = pos
+                activeTile = nil
+                startLoc = nil
+            }
+        }
+    }
+
+}

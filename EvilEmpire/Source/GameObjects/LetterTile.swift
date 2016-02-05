@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol LetterTileDelegate {
+    func tileDragEnded (tile: LetterTile)
+    func tileDragBegan (tile: LetterTile)
+}
+
+
 class LetterTile: UIView {
     
     struct Constants {
@@ -17,8 +23,12 @@ class LetterTile: UIView {
         }
     }
     
-    var bgImage: UIImageView!
-    var letterLabel: UILabel!
+    private var bgImage: UIImageView!
+    private var letterLabel: UILabel!
+    
+    var letter: String = ""
+    
+    var delegate: LetterTileDelegate?
     
     var selected: Bool = false {
         didSet {
@@ -35,6 +45,7 @@ class LetterTile: UIView {
         
         self.init (frame: frame)
         
+        self.letter = letter
         letterLabel.text = letter
     }
     
@@ -74,6 +85,7 @@ class LetterTile: UIView {
         case .Ended:
             selected = false
             self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+            self.delegate?.tileDragEnded(self)
         default: break;
             
         }
@@ -88,6 +100,7 @@ class LetterTile: UIView {
         selected = true
         
         self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
+        self.delegate?.tileDragBegan(self)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
