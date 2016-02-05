@@ -11,6 +11,7 @@ import UIKit
 class LetterHole: UIView {
 
     var letterLabel: UILabel!
+    var holeImageView: UIImageView!
 
     convenience init (frame: CGRect, letter: String) {
         
@@ -28,7 +29,12 @@ class LetterHole: UIView {
         letterLabel.font = UIFont.systemFontOfSize(30)
         letterLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(letterLabel)
-
+      
+        let holeImg = UIImage (named: "hole-1")
+        holeImageView = UIImageView (image: holeImg)
+        holeImageView.frame = self.bounds
+        holeImageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.45, 1.45);
+        self.addSubview(holeImageView)
     }
     
     required init?(coder aDecoder: NSCoder) {

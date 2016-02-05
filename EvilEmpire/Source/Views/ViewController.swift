@@ -78,6 +78,7 @@ class ViewController: UIViewController {
         createTiles()
         
         createHoles ()
+        createScrollingAlert()
     }
 
     
@@ -103,10 +104,16 @@ class ViewController: UIViewController {
         let tileWidth = (availableWidth - Constants.Tiles.spacingGap * CGFloat(Constants.Tiles.count - 1)) / CGFloat(Constants.Tiles.count)
         for index in 0...Constants.Tiles.count-1 {
             let letter = randomLetters[index]
-            let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), CGRectGetHeight(tileLayer.frame) - tileWidth - 30, tileWidth, tileWidth), letter: letter as! String)
+            let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), CGRectGetHeight(tileLayer.frame) - tileWidth - 100, tileWidth, tileWidth), letter: letter as! String)
             tileLayer.addSubview(tile)
             tiles.append(tile)
         }
+    }
+    
+    private func createScrollingAlert () {
+        let alert = ScrollingAlert (frame: CGRectMake(0, CGRectGetMaxY(uiLayer.frame)-55, CGRectGetWidth(uiLayer.frame), 40))
+        alert.setAlertMessage("ALERT!!! Hull Breach.... Plug holes to avoid oxygen loss..... ALERT!!!!")
+        uiLayer.addSubview(alert)
     }
     
     private func createHoles () {
