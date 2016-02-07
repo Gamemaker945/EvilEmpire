@@ -64,12 +64,7 @@ class LetterTile: UIView {
         self.addSubview(letterLabel)
         
         
-        let pan = UIPanGestureRecognizer(target:self, action:"pan:")
-        pan.maximumNumberOfTouches = 1
-        pan.minimumNumberOfTouches = 1
-        self.gestureRecognizers = [pan]
-        
-    }
+     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -89,6 +84,20 @@ class LetterTile: UIView {
         default: break;
             
         }
+    }
+    
+    func enableDrag () {
+        let pan = UIPanGestureRecognizer(target:self, action:"pan:")
+        pan.maximumNumberOfTouches = 1
+        pan.minimumNumberOfTouches = 1
+        self.gestureRecognizers = [pan]
+        
+    }
+    
+    func disableDrag () {
+        self.gestureRecognizers = nil
+        self.userInteractionEnabled = false
+
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
