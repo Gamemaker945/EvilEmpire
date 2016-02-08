@@ -47,8 +47,11 @@ class ViewController: UIViewController {
    
     // Holes
     var holes: [LetterHole] = []
+    var holesPlugged = 0
     
     var glass:UIImageView!
+    
+    var tank: OxygenTank!
     
     var masterFGFrame:CGRect!
     
@@ -158,7 +161,7 @@ class ViewController: UIViewController {
     }
 
     private func createOxygenTank () {
-        let tank = OxygenTank (frame: CGRectMake(CGRectGetWidth(self.shipLayer.frame) - 100, CGRectGetMidY(self.shipLayer.frame) - 115, 50, 200), levelDuration:60)
+        tank = OxygenTank (frame: CGRectMake(CGRectGetWidth(self.shipLayer.frame) - 100, CGRectGetMidY(self.shipLayer.frame) - 115, 50, 200), levelDuration:60)
         tank.delegate = self
         shipLayer.addSubview(tank)
         
@@ -314,7 +317,12 @@ class ViewController: UIViewController {
             }) { (done) -> Void in
                 self.timesShaken += 1
                 self.shakeScreen()
+       
         }
+    }
+    
+    private func playSuccess() {
+        self.tank.haltCountdown()
     }
 
 }
@@ -334,6 +342,10 @@ extension ViewController : LetterTileDelegate {
                     self.activeTile = nil
                     self.startLoc = nil
                     found = true
+                    holesPlugged += 1
+                    if holesPlugged == Constants.Tiles.count {
+                        playSuccess()
+                    }
                     break
                 } else {
                     returnActiveTile()
@@ -360,11 +372,14 @@ extension ViewController : LetterTileDelegate {
             }
         }
     }
+    
+
 }
 
 extension ViewController : OxygenTankDelegate {
     
     func tankDepleted () {
-        
+        var x = 2
+        x += 2
     }
 }
