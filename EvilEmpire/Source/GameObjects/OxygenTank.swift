@@ -19,6 +19,9 @@ class OxygenTank: UIView {
     private var level: UIView!
     
     private var duration:Int = 0
+    private var isRed = false
+    
+    private var colorTimer:NSTimer?
     
     var delegate: OxygenTankDelegate?
 
@@ -26,6 +29,13 @@ class OxygenTank: UIView {
         
         self.init (frame: frame)
         duration = levelDuration
+        
+        let delay = Double(duration) * 0.66 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            self.colorTimer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("switchColor:"), userInfo: nil, repeats: true)
+            
+        })
     }
     
     override init(frame: CGRect) {
@@ -39,6 +49,9 @@ class OxygenTank: UIView {
         tank = UIImageView (frame: self.bounds)
         tank.image = UIImage (named: "O2tank")
         self.addSubview(tank)
+        
+
+
         
     }
 
@@ -61,6 +74,17 @@ class OxygenTank: UIView {
     
     func haltCountdown () {
         self.layer.removeAllAnimations()
+    }
+    
+
+    func switchColor(timer : NSTimer) {
+        
+        self.isRed = !self.isRed
+        if isRed {
+            self.level.backgroundColor = UIColor.blueColor()
+        } else {
+            self.level.backgroundColor = UIColor.redColor()
+        }
     }
 
 }

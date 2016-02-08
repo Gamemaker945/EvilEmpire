@@ -20,7 +20,7 @@ class LetterHole: UIView {
     private var letterLabel: UILabel!
     private var holeImageView: UIImageView!
     
-    private var particleEmitter:CAEmitterLayer!
+    private var particleEmitter:CAEmitterLayer?
     
     private var bounceDirection:LetterBounceDirection = .Stationary
     var letter: String = ""
@@ -109,19 +109,19 @@ class LetterHole: UIView {
     private func startSmoke () {
         particleEmitter = CAEmitterLayer()
         
-        particleEmitter.emitterPosition = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
-        particleEmitter.emitterMode = kCAEmitterLayerAdditive
-        particleEmitter.emitterShape = kCAEmitterLayerRectangle
-        particleEmitter.emitterSize = CGSizeMake(40, 40)
+        particleEmitter?.emitterPosition = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)
+        particleEmitter?.emitterMode = kCAEmitterLayerAdditive
+        particleEmitter?.emitterShape = kCAEmitterLayerRectangle
+        particleEmitter?.emitterSize = CGSizeMake(40, 40)
         
         let cell = makeEmitterCell()
         
-        particleEmitter.emitterCells = [cell]
-        self.layer.addSublayer(particleEmitter)
+        particleEmitter?.emitterCells = [cell]
+        self.layer.addSublayer(particleEmitter!)
     }
     
     func stopSmoke () {
-        particleEmitter.removeFromSuperlayer()
+        particleEmitter?.removeFromSuperlayer()
         particleEmitter = nil
     }
     
