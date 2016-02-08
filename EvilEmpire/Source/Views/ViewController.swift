@@ -10,6 +10,9 @@ import UIKit
 import AVFoundation
 
 
+// -----------------------------------------------------------------------------
+// MARK: - ViewController Class
+
 class ViewController: UIViewController {
 
     // MARK: - Constants
@@ -25,6 +28,23 @@ class ViewController: UIViewController {
             static let spacingGap:CGFloat = 5
             static let leftPadding:CGFloat = 25
             static let rightPadding:CGFloat = 25
+        }
+        
+        struct UIImageNames {
+            static let starfieldImg = "StarField"
+            static let glassImg = "Glass"
+            static let shipImg = "Ship"
+            static let tilePlatformImg = "tile-platform"
+        }
+        
+        struct ScrollingMsgs {
+            static let alertMsg = "ALERT!!! .... Hull Breach .... Plug holes to avoid oxygen loss .... ALERT!!!!"
+            static let successMsg = "Well Done!!! You saved thousands of lives today!!"
+        }
+        
+        struct ShakeValues {
+            static let shakeCount = 20
+            static let shakeDist = 10
         }
     }
     
@@ -49,16 +69,22 @@ class ViewController: UIViewController {
     var holes: [LetterHole] = []
     var holesPlugged = 0
     
+    // Alert Scroller
+    var alert:ScrollingAlert!
+    
+    // Glass Image
     var glass:UIImageView!
     
+    // Oxygen Tank
     var tank: OxygenTank!
     
+    // Master Foreground Frame (used for initial shake)
     var masterFGFrame:CGRect!
     
-    var explosionAudio:AVAudioPlayer!
-    var glassAudio:AVAudioPlayer!
-    var alarmAudio:AVAudioPlayer!
-    var windAudio:AVAudioPlayer!
+    var audioController: AudioController!
+    
+    
+    
     
     // MARK: - Lifecycle Methods
 
@@ -68,148 +94,120 @@ class ViewController: UIViewController {
         // Setup the game layers
         spaceEffectsLayer = UIView (frame: self.view.bounds)
         self.view.addSubview(spaceEffectsLayer)
-        
-        let spaceBG = UIImageView (frame: spaceEffectsLayer.bounds)
-        spaceBG.image = UIImage (named: "StarField")
-        self.spaceEffectsLayer.addSubview(spaceBG)
+        createStarfield ()
         
         // Extend the interace several pixels beyond the edges of the screen. This will allow
         // for the "explosion shaking" effect (I hope)
-        masterFGFrame = CGRectMake(Constants.MasterLayerPadding.width * -1.0, Constants.MasterLayerPadding.height * -1.0, CGRectGetWidth(self.view.frame) + Constants.MasterLayerPadding.width * 2.0, CGRectGetHeight(self.view.frame) + Constants.MasterLayerPadding.height * 2.0)
+        masterFGFrame = CGRectMake(Constants.MasterLayerPadding.width * -1.0,
+            Constants.MasterLayerPadding.height * -1.0,
+            CGRectGetWidth(self.view.frame) + Constants.MasterLayerPadding.width * 2.0,
+            CGRectGetHeight(self.view.frame) + Constants.MasterLayerPadding.height * 2.0)
+        
+        // Create the master layer
         masterForegroundLayer = UIView (frame: masterFGFrame)
         self.view .addSubview(masterForegroundLayer)
         
+        // Create the glass layer
         glassLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(glassLayer)
+        createGlass()
 
+        // Create the hull layer
         shipLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(shipLayer)
+        createShip()
+        createOxygenTank ()
 
+        // Create the tile layer
         tileLayer = UIView (frame: masterForegroundLayer.bounds)
+        createTiles()
         
+        // Create the UI Layer
         uiLayer = UIView (frame: masterForegroundLayer.bounds)
         self.masterForegroundLayer.addSubview(uiLayer)
         self.masterForegroundLayer.addSubview(tileLayer)
     
-        loadSounds()
-        createGlass()
-        createShip()
-        createTiles()
+        // Setup audio
+        audioController = AudioController()
         
-        createOxygenTank ()
-        
-        
-        
-        
-        //activeTiles()
-        
+        // Shake the screen for the initial explosion
         let time = dispatch_time(DISPATCH_TIME_NOW, 4)
         dispatch_after(time, dispatch_get_main_queue(), {
-            self.explosionAudio.play()
+            self.audioController.playSound(.Explosion)
             self.shakeScreen()
         })
         
         
     }
     
-    func loadSounds () {
-        
-        let explosionSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Explosion", ofType: "mp3")!)
-        let glassSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("glassBreak", ofType: "mp3")!)
-        let alarmSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("RedAlert", ofType: "mp3")!)
-        let windSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Wind", ofType: "mp3")!)
-        
-        explosionAudio = AVAudioPlayer()
-        glassAudio = AVAudioPlayer()
-        alarmAudio = AVAudioPlayer()
-        windAudio = AVAudioPlayer()
-        
-        
-        do {
-            
-            glassAudio = try AVAudioPlayer(contentsOfURL: glassSound, fileTypeHint: nil)
-            glassAudio.prepareToPlay()
-            
-            explosionAudio = try AVAudioPlayer(contentsOfURL: explosionSound, fileTypeHint: nil)
-            explosionAudio.prepareToPlay()
 
-            windAudio = try AVAudioPlayer(contentsOfURL: windSound, fileTypeHint: nil)
-            windAudio.numberOfLoops = -1
-            windAudio.prepareToPlay()
-
-            alarmAudio = try AVAudioPlayer(contentsOfURL: alarmSound, fileTypeHint: nil)
-            alarmAudio.numberOfLoops = 2
-            alarmAudio.prepareToPlay()
-            
-            
-        } catch _ {
-            
-        }
-        
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-       
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
+    // MARK: - Creation Methods
 
     private func createOxygenTank () {
-        tank = OxygenTank (frame: CGRectMake(CGRectGetWidth(self.shipLayer.frame) - 100, CGRectGetMidY(self.shipLayer.frame) - 115, 50, 200), levelDuration:60)
+        tank = OxygenTank (frame: CGRectMake(CGRectGetWidth(self.shipLayer.frame) - 100,
+            CGRectGetMidY(self.shipLayer.frame) - 115, 50, 200), levelDuration:60)
         tank.delegate = self
         shipLayer.addSubview(tank)
         
         tank.beginCountdown()
     }
     
+    private func createStarfield () {
+        let spaceBG = UIImageView (frame: spaceEffectsLayer.bounds)
+        spaceBG.image = UIImage (named: Constants.UIImageNames.starfieldImg)
+        self.spaceEffectsLayer.addSubview(spaceBG)
+    }
+    
     private func createGlass () {
         glass = UIImageView (frame: glassLayer.bounds)
-        glass.image = UIImage (named: "Glass")
+        glass.image = UIImage (named: Constants.UIImageNames.glassImg)
         glass.alpha = 0.6
         glassLayer.addSubview(glass)
     }
     
     private func createShip () {
         let ship = UIImageView (frame: shipLayer.bounds)
-        ship.image = UIImage (named: "Ship")
+        ship.image = UIImage (named: Constants.UIImageNames.shipImg)
         shipLayer.addSubview(ship)
     }
     
     private func createTiles () {
         tiles = []
         
+        // Shuffle the array of letters
         let randomLetters = newShuffledArray(Constants.Tiles.letters)
+        
+        // Size the letters to fit the screen
         let availableWidth = CGRectGetWidth(tileLayer.frame) - Constants.Tiles.leftPadding - Constants.Tiles.rightPadding
         let tileWidth = (availableWidth - Constants.Tiles.spacingGap * CGFloat(Constants.Tiles.count - 1)) / CGFloat(Constants.Tiles.count)
+        
+        // Line the tiles up along the bottom ready for display
         for index in 0...Constants.Tiles.count-1 {
+            // Create the tile
             let letter = randomLetters[index]
             let tile = LetterTile (frame: CGRectMake(Constants.Tiles.leftPadding + CGFloat(index) * (tileWidth + Constants.Tiles.spacingGap), CGRectGetHeight(tileLayer.frame), tileWidth, tileWidth), letter: letter as! String)
             tile.delegate = self
             tileLayer.addSubview(tile)
             tiles.append(tile)
             
+            // Create the platform under the tile
             let platform = UIImageView (frame: CGRectMake(tile.frame.origin.x, CGRectGetMaxY(tile.frame), tileWidth, tileWidth / 3))
-            platform.image = UIImage (named: "tile-platform")
+            platform.image = UIImage (named: Constants.UIImageNames.tilePlatformImg)
             tileLayer.addSubview(platform)
             platforms.append (platform)
         }
     }
     
     private func createScrollingAlert () {
-        let alert = ScrollingAlert (frame: CGRectMake(0, CGRectGetMaxY(uiLayer.frame), CGRectGetWidth(uiLayer.frame), 40))
-        alert.setAlertMessage("ALERT!!! .... Hull Breach .... Plug holes to avoid oxygen loss .... ALERT!!!!")
+        alert = ScrollingAlert (frame: CGRectMake(0, CGRectGetMaxY(uiLayer.frame), CGRectGetWidth(uiLayer.frame), 40))
+        alert.setAlertMessage(Constants.ScrollingMsgs.alertMsg, usingColor:UIColor.redColor())
+        alert.beginScroll()
         tileLayer.addSubview(alert)
         
         UIView.animateWithDuration(0.2, animations: { () -> Void in
-            var f = alert.frame
+            var f = self.alert.frame
             f.origin.y -= 55
-            alert.frame = f
+            self.alert.frame = f
             }) { (done) -> Void in
                 
         }
@@ -258,19 +256,22 @@ class ViewController: UIViewController {
         glass.layer.mask = lay;
     }
     
-    
-    func newShuffledArray(array:NSArray) -> NSArray {
+    // Shuffle the input array
+    private func newShuffledArray (array:NSArray) -> NSArray {
         let mutableArray = array.mutableCopy() as! NSMutableArray
         let count = mutableArray.count
         if count>1 {
-            for var i=count-1;i>0;--i{
+            for var i=count-1; i > 0; --i {
                 mutableArray.exchangeObjectAtIndex(i, withObjectAtIndex: Int(arc4random_uniform(UInt32(i+1))))
             }
         }
         return mutableArray as NSArray
     }
     
-    func activateTiles () {
+    // MARK: - Utility Methods
+
+    // This method will make the tiles visible and enable dragging once complete
+    private func activateTiles () {
         for index in 0 ... tiles.count - 1 {
             let tile = tiles[index]
             let platform = platforms[index]
@@ -288,15 +289,16 @@ class ViewController: UIViewController {
         }
     }
     
+    // Shake the screen to simulate and explosion
     var timesShaken = 0
-    func shakeScreen () {
+    private func shakeScreen () {
         var mainF = masterForegroundLayer.frame
         if timesShaken > 20 {
             self.masterForegroundLayer.frame = self.masterFGFrame
             createHoles ()
-            glassAudio.play()
-            alarmAudio.play()
-            windAudio.play()
+            audioController.playSound(.GlassBreak)
+            audioController.playSound(.Alarm)
+            audioController.playSound(.Wind)
             createScrollingAlert()
             activateTiles ()
             return
@@ -306,10 +308,10 @@ class ViewController: UIViewController {
             
             let mod = self.timesShaken % 5
             switch mod {
-            case 0: mainF.origin.x += 5
-            case 1: mainF.origin.y += 5
-            case 2: mainF.origin.x -= 10
-            case 3: mainF.origin.y -= 10
+            case 0: mainF.origin.x += CGFloat (Constants.ShakeValues.shakeDist / 2)
+            case 1: mainF.origin.y += CGFloat (Constants.ShakeValues.shakeDist / 2)
+            case 2: mainF.origin.x -= CGFloat (Constants.ShakeValues.shakeDist)
+            case 3: mainF.origin.y -= CGFloat (Constants.ShakeValues.shakeDist)
             case 4: mainF = self.masterFGFrame
             default: break
             }
@@ -321,43 +323,59 @@ class ViewController: UIViewController {
         }
     }
     
+    // The user has successfull plugged the holes. Acknowledge
     private func playSuccess() {
         self.tank.haltCountdown()
+        for hole in self.holes {
+            hole.createPop()
+        }
+        alert.setAlertMessage(Constants.ScrollingMsgs.successMsg, usingColor:UIColor.greenColor())
+    }
+    
+    private func playFailure() {
+
     }
 
 }
 
+
+// -----------------------------------------------------------------------------
+// MARK: - Extension to handle LetterTileDelegate
+
 extension ViewController : LetterTileDelegate {
 
-    
+    // Tile dragging has ended. Check to see if the tile is in range of a hole
+    // If so, see if it plugs the correct hole. If not, return it to its original
+    // location
     func tileDragEnded (tile: LetterTile) {
-        var found = false
+        
         for hole in self.holes {
             if hole.didPlugHole(tile) {
                 
+                // Letter matches. Pop it into position
                 if hole.letter == tile.letter {
                     tile.center = hole.center
                     tile.disableDrag()
-                    hole.stopSmoke()
+                    
                     self.activeTile = nil
                     self.startLoc = nil
-                    found = true
                     holesPlugged += 1
                     if holesPlugged == Constants.Tiles.count {
                         playSuccess()
                     }
-                    break
+                    return
+                    
                 } else {
-                    returnActiveTile()
+                    break
                 }
             }
         }
         
-        if found == false {
-            returnActiveTile()
-        }
+        // It did not plug any holes. Return it to its location
+        returnActiveTile()
     }
     
+    // Dragging began. Store the active tile to return it if need be
     func tileDragBegan (tile: LetterTile) {
         activeTile = tile
         startLoc = tile.center
@@ -376,10 +394,13 @@ extension ViewController : LetterTileDelegate {
 
 }
 
+// -----------------------------------------------------------------------------
+// MARK: - Extension to handle OxygenTankDelegate
+
 extension ViewController : OxygenTankDelegate {
     
+    // The O2 Tank has depleted. Signal the end of the game
     func tankDepleted () {
-        var x = 2
-        x += 2
+        playFailure()
     }
 }

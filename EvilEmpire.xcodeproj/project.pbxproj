@@ -17,14 +17,13 @@
 		9C62848A1C60FFA400D726DD /* LetterTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284891C60FFA400D726DD /* LetterTile.swift */; };
 		9C6284E11C63B1FC00D726DD /* LetterHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284E01C63B1FC00D726DD /* LetterHole.swift */; };
 		9C6284E31C63B87200D726DD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284E21C63B87200D726DD /* Utilities.swift */; };
+		9CE975421C68ED4300678BE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE975411C68ED4300678BE7 /* QuartzCore.framework */; };
+		9CE975441C68F7BB00678BE7 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE975431C68F7BB00678BE7 /* AudioController.swift */; };
 		AC3FBC301C650B4B00F28BFA /* ScrollingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FBC2F1C650B4B00F28BFA /* ScrollingAlert.swift */; };
 		AC3FBC331C6512CD00F28BFA /* triple_dot_digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC321C65122100F28BFA /* triple_dot_digital-7.ttf */; };
 		AC3FBC351C6568B500F28BFA /* OxygenTank.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FBC341C6568B500F28BFA /* OxygenTank.swift */; };
 		AC3FBC381C666B4700F28BFA /* glassBreak.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC371C666B4700F28BFA /* glassBreak.mp3 */; };
 		AC3FBC3A1C666C6C00F28BFA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3FBC391C666C6C00F28BFA /* AVFoundation.framework */; };
-		AC3FBC3C1C66717E00F28BFA /* Explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC3B1C66717E00F28BFA /* Explosion.mp3 */; };
-		AC3FBC3E1C66746200F28BFA /* RedAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC3D1C66746200F28BFA /* RedAlert.mp3 */; };
-		AC3FBC401C67EFA700F28BFA /* Wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC3F1C67EFA700F28BFA /* Wind.mp3 */; };
 		AC3FBC421C67F38900F28BFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3FBC411C67F38900F28BFA /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,14 +61,13 @@
 		9C6284891C60FFA400D726DD /* LetterTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterTile.swift; sourceTree = "<group>"; };
 		9C6284E01C63B1FC00D726DD /* LetterHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterHole.swift; sourceTree = "<group>"; };
 		9C6284E21C63B87200D726DD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		9CE975411C68ED4300678BE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9CE975431C68F7BB00678BE7 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		AC3FBC2F1C650B4B00F28BFA /* ScrollingAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingAlert.swift; sourceTree = "<group>"; };
 		AC3FBC321C65122100F28BFA /* triple_dot_digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "triple_dot_digital-7.ttf"; sourceTree = "<group>"; };
 		AC3FBC341C6568B500F28BFA /* OxygenTank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OxygenTank.swift; sourceTree = "<group>"; };
 		AC3FBC371C666B4700F28BFA /* glassBreak.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = glassBreak.mp3; sourceTree = "<group>"; };
 		AC3FBC391C666C6C00F28BFA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		AC3FBC3B1C66717E00F28BFA /* Explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Explosion.mp3; path = ../../../../../../../Downloads/Web/Explosion.mp3; sourceTree = "<group>"; };
-		AC3FBC3D1C66746200F28BFA /* RedAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = RedAlert.mp3; path = ../../../../../../../Downloads/Web/RedAlert.mp3; sourceTree = "<group>"; };
-		AC3FBC3F1C67EFA700F28BFA /* Wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Wind.mp3; path = ../../../../../../../Downloads/Web/Wind.mp3; sourceTree = "<group>"; };
 		AC3FBC411C67F38900F28BFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -78,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE975421C68ED4300678BE7 /* QuartzCore.framework in Frameworks */,
 				AC3FBC421C67F38900F28BFA /* CoreGraphics.framework in Frameworks */,
 				AC3FBC3A1C666C6C00F28BFA /* AVFoundation.framework in Frameworks */,
 			);
@@ -103,6 +102,7 @@
 		9C6284491C60F85100D726DD = {
 			isa = PBXGroup;
 			children = (
+				9CE975411C68ED4300678BE7 /* QuartzCore.framework */,
 				AC3FBC411C67F38900F28BFA /* CoreGraphics.framework */,
 				AC3FBC391C666C6C00F28BFA /* AVFoundation.framework */,
 				9C6284541C60F85100D726DD /* EvilEmpire */,
@@ -188,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				9C6284E21C63B87200D726DD /* Utilities.swift */,
+				9CE975431C68F7BB00678BE7 /* AudioController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -211,9 +212,6 @@
 		AC3FBC361C666B3600F28BFA /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				AC3FBC3F1C67EFA700F28BFA /* Wind.mp3 */,
-				AC3FBC3D1C66746200F28BFA /* RedAlert.mp3 */,
-				AC3FBC3B1C66717E00F28BFA /* Explosion.mp3 */,
 				AC3FBC371C666B4700F28BFA /* glassBreak.mp3 */,
 			);
 			path = Sounds;
@@ -323,13 +321,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC3FBC401C67EFA700F28BFA /* Wind.mp3 in Resources */,
 				AC3FBC331C6512CD00F28BFA /* triple_dot_digital-7.ttf in Resources */,
 				9C6284601C60F85100D726DD /* LaunchScreen.storyboard in Resources */,
-				AC3FBC3C1C66717E00F28BFA /* Explosion.mp3 in Resources */,
 				9C62845D1C60F85100D726DD /* Assets.xcassets in Resources */,
 				AC3FBC381C666B4700F28BFA /* glassBreak.mp3 in Resources */,
-				AC3FBC3E1C66746200F28BFA /* RedAlert.mp3 in Resources */,
 				9C62845B1C60F85100D726DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +356,7 @@
 				9C6284561C60F85100D726DD /* AppDelegate.swift in Sources */,
 				9C62848A1C60FFA400D726DD /* LetterTile.swift in Sources */,
 				9C6284E31C63B87200D726DD /* Utilities.swift in Sources */,
+				9CE975441C68F7BB00678BE7 /* AudioController.swift in Sources */,
 				9C6284E11C63B1FC00D726DD /* LetterHole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

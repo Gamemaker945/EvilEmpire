@@ -7,13 +7,35 @@
 //
 
 import UIKit
+import QuartzCore
+
+// -----------------------------------------------------------------------------
+// MARK: - OxygenTankDelegate Protocol
 
 protocol OxygenTankDelegate {
     func tankDepleted ()
 }
 
+// -----------------------------------------------------------------------------
+// MARK: - OxygenTank Class
 
 class OxygenTank: UIView {
+
+    // MARK: - Constants
+    struct Constants {
+        struct AssetNames {
+            static let tankImg = "O2tank"
+        }
+        
+        struct Colors {
+            static let okColor = UIColor.blueColor()
+            static let alarmColor = UIColor.redColor()
+        }
+        
+        
+    }
+    
+    // MARK: - Variables
 
     private var tank: UIImageView!
     private var level: UIView!
@@ -38,6 +60,8 @@ class OxygenTank: UIView {
         })
     }
     
+    // MARK: - Init Functions
+
     override init(frame: CGRect) {
         
         super.init(frame: frame)
@@ -47,11 +71,8 @@ class OxygenTank: UIView {
         self.addSubview(level)
 
         tank = UIImageView (frame: self.bounds)
-        tank.image = UIImage (named: "O2tank")
+        tank.image = UIImage (named: Constants.AssetNames.tankImg)
         self.addSubview(tank)
-        
-
-
         
     }
 
@@ -59,6 +80,8 @@ class OxygenTank: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public Functions
+
     func beginCountdown () {
         
         UIView.animateWithDuration(Double(duration), animations: { () -> Void in
@@ -73,17 +96,21 @@ class OxygenTank: UIView {
     }
     
     func haltCountdown () {
+        colorTimer?.invalidate()
+        colorTimer = nil
         self.layer.removeAllAnimations()
     }
     
 
-    func switchColor(timer : NSTimer) {
+    // MARK: - Private Functions
+
+    private func switchColor(timer : NSTimer) {
         
         self.isRed = !self.isRed
         if isRed {
-            self.level.backgroundColor = UIColor.blueColor()
+            self.level.backgroundColor = Constants.Colors.okColor
         } else {
-            self.level.backgroundColor = UIColor.redColor()
+            self.level.backgroundColor = Constants.Colors.alarmColor
         }
     }
 

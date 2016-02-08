@@ -8,8 +8,13 @@
 
 import UIKit
 
+// -----------------------------------------------------------------------------
+// MARK: - Utilities Class
+
 class Utilities {
 
+    // Create a rounded rect path with the input constraints
+    
     class func newPathForRoundedRect (rect:CGRect, radius:CGFloat) -> CGMutablePathRef
     {
         let retPath = CGPathCreateMutable();

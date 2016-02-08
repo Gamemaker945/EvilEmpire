@@ -8,14 +8,21 @@
 
 import UIKit
 
+// -----------------------------------------------------------------------------
+// MARK: - LetterTileDelegate Protocol
+
 protocol LetterTileDelegate {
     func tileDragEnded (tile: LetterTile)
     func tileDragBegan (tile: LetterTile)
 }
 
 
+// -----------------------------------------------------------------------------
+// MARK: - LetterTile Class
+
 class LetterTile: UIView {
     
+    // MARK: - Constants
     struct Constants {
         struct AssetNames {
             static let blankTile = "tile-blank"
@@ -23,6 +30,7 @@ class LetterTile: UIView {
         }
     }
     
+    // MARK: - Variables
     private var bgImage: UIImageView!
     private var letterLabel: UILabel!
     
@@ -41,6 +49,7 @@ class LetterTile: UIView {
     }
     
     
+    // MARK: - Init Functions
     convenience init (frame: CGRect, letter: String) {
         
         self.init (frame: frame)
@@ -71,21 +80,8 @@ class LetterTile: UIView {
     }
     
     
-    var lastLocation: CGPoint = CGPointMake(0,0)
-    func pan (recognizer:UIPanGestureRecognizer) {
-        let translation  = recognizer.translationInView(self.superview!)
-        self.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
-        
-        switch recognizer.state {
-        case .Ended:
-            selected = false
-            self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-            self.delegate?.tileDragEnded(self)
-        default: break;
-            
-        }
-    }
     
+    // MARK: - Public Drag Functions
     func enableDrag () {
         let pan = UIPanGestureRecognizer(target:self, action:"pan:")
         pan.maximumNumberOfTouches = 1
@@ -99,8 +95,27 @@ class LetterTile: UIView {
         self.userInteractionEnabled = false
 
     }
+
     
+    // MARK: - Private Utility Functions
+    var lastLocation: CGPoint = CGPointMake(0,0)
+    private func pan (recognizer:UIPanGestureRecognizer) {
+        let translation  = recognizer.translationInView(self.superview!)
+        self.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
+        
+        switch recognizer.state {
+            case .Ended:
+                selected = false
+                self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                self.delegate?.tileDragEnded(self)
+            default: break;
+        }
+    }
+
+    
+    // MARK: - Touch Functions
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         // Promote the touched view
         self.superview?.bringSubviewToFront(self)
         
@@ -108,6 +123,7 @@ class LetterTile: UIView {
         lastLocation = self.center
         selected = true
         
+        // Scale the object to appear "lifted"
         self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
         self.delegate?.tileDragBegan(self)
     }
