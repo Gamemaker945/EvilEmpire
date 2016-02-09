@@ -99,7 +99,7 @@ class LetterTile: UIView {
     
     // MARK: - Private Utility Functions
     var lastLocation: CGPoint = CGPointMake(0,0)
-    private func pan (recognizer:UIPanGestureRecognizer) {
+    func pan (recognizer:UIPanGestureRecognizer) {
         let translation  = recognizer.translationInView(self.superview!)
         self.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
         

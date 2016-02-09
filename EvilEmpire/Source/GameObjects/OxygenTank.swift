@@ -80,6 +80,10 @@ class OxygenTank: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        haltCountdown ()
+    }
+    
     // MARK: - Public Functions
 
     func beginCountdown () {
@@ -92,6 +96,7 @@ class OxygenTank: UIView {
             self.level.frame = f
             }) { (done) -> Void in
                 self.delegate?.tankDepleted()
+                self.haltCountdown ()
         }
     }
     
@@ -104,7 +109,7 @@ class OxygenTank: UIView {
 
     // MARK: - Private Functions
 
-    private func switchColor(timer : NSTimer) {
+    func switchColor(timer : NSTimer) {
         
         self.isRed = !self.isRed
         if isRed {

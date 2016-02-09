@@ -25,6 +25,9 @@
 		AC3FBC381C666B4700F28BFA /* glassBreak.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC371C666B4700F28BFA /* glassBreak.mp3 */; };
 		AC3FBC3A1C666C6C00F28BFA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3FBC391C666C6C00F28BFA /* AVFoundation.framework */; };
 		AC3FBC421C67F38900F28BFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3FBC411C67F38900F28BFA /* CoreGraphics.framework */; };
+		AC3FBC461C6984D400F28BFA /* Explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC431C6984D400F28BFA /* Explosion.mp3 */; };
+		AC3FBC471C6984D400F28BFA /* RedAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC441C6984D400F28BFA /* RedAlert.mp3 */; };
+		AC3FBC481C6984D400F28BFA /* Wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC451C6984D400F28BFA /* Wind.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		AC3FBC371C666B4700F28BFA /* glassBreak.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = glassBreak.mp3; sourceTree = "<group>"; };
 		AC3FBC391C666C6C00F28BFA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		AC3FBC411C67F38900F28BFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AC3FBC431C6984D400F28BFA /* Explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Explosion.mp3; sourceTree = "<group>"; };
+		AC3FBC441C6984D400F28BFA /* RedAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RedAlert.mp3; sourceTree = "<group>"; };
+		AC3FBC451C6984D400F28BFA /* Wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Wind.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,9 @@
 		AC3FBC361C666B3600F28BFA /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				AC3FBC431C6984D400F28BFA /* Explosion.mp3 */,
+				AC3FBC441C6984D400F28BFA /* RedAlert.mp3 */,
+				AC3FBC451C6984D400F28BFA /* Wind.mp3 */,
 				AC3FBC371C666B4700F28BFA /* glassBreak.mp3 */,
 			);
 			path = Sounds;
@@ -321,10 +330,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC3FBC481C6984D400F28BFA /* Wind.mp3 in Resources */,
 				AC3FBC331C6512CD00F28BFA /* triple_dot_digital-7.ttf in Resources */,
 				9C6284601C60F85100D726DD /* LaunchScreen.storyboard in Resources */,
+				AC3FBC461C6984D400F28BFA /* Explosion.mp3 in Resources */,
 				9C62845D1C60F85100D726DD /* Assets.xcassets in Resources */,
 				AC3FBC381C666B4700F28BFA /* glassBreak.mp3 in Resources */,
+				AC3FBC471C6984D400F28BFA /* RedAlert.mp3 in Resources */,
 				9C62845B1C60F85100D726DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

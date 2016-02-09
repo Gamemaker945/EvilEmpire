@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-
+import QuartzCore
 
 // -----------------------------------------------------------------------------
 // MARK: - ViewController Class
@@ -72,6 +72,10 @@ class ViewController: UIViewController {
     // Alert Scroller
     var alert:ScrollingAlert!
     
+    // Alarm Strobe
+    var strobeView:UIView!
+    var strobeTimer: NSTimer?
+    
     // Glass Image
     var glass:UIImageView!
     
@@ -81,6 +85,7 @@ class ViewController: UIViewController {
     // Master Foreground Frame (used for initial shake)
     var masterFGFrame:CGRect!
     
+    // Audio Controller
     var audioController: AudioController!
     
     
@@ -136,6 +141,8 @@ class ViewController: UIViewController {
             self.audioController.playSound(.Explosion)
             self.shakeScreen()
         })
+        
+        createStrobe()
         
         
     }
@@ -209,8 +216,23 @@ class ViewController: UIViewController {
             f.origin.y -= 55
             self.alert.frame = f
             }) { (done) -> Void in
-                
         }
+    }
+    
+    let gradientLayer = CAGradientLayer()
+    private func createStrobe () {
+        strobeView = UIView (frame: uiLayer.bounds)
+        self.strobeView.alpha = 0
+        self.strobeView.userInteractionEnabled = false
+        
+        let color1 = UIColor.redColor().CGColor
+        let color2 = UIColor.clearColor().CGColor
+        gradientLayer.colors = [color1, color2]
+        gradientLayer.frame = strobeView.bounds
+        gradientLayer.locations = [0.0, 0.35]
+        strobeView.layer.insertSublayer(gradientLayer, atIndex: 0)
+        
+        tileLayer.addSubview(strobeView)
     }
     
     private func createHoles () {
@@ -301,6 +323,8 @@ class ViewController: UIViewController {
             audioController.playSound(.Wind)
             createScrollingAlert()
             activateTiles ()
+            
+            self.strobeTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("switchStrobe:"), userInfo: nil, repeats: true)
             return
         }
         
@@ -323,8 +347,24 @@ class ViewController: UIViewController {
         }
     }
     
+    func switchStrobe (timer : NSTimer) {
+        
+        if self.strobeView.alpha == 0 {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.strobeView.alpha = 0.5
+            })
+        } else {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.strobeView.alpha = 0
+            })
+        }
+    }
+    
     // The user has successfull plugged the holes. Acknowledge
     private func playSuccess() {
+        self.strobeView.alpha = 0
+        strobeTimer?.invalidate()
+        
         self.tank.haltCountdown()
         for hole in self.holes {
             hole.createPop()
