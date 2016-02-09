@@ -17,6 +17,15 @@ class ViewController: UIViewController {
 
     // MARK: - Constants
     struct Constants {
+        
+        struct Assets {
+            static let tryAgainButton = "tryAgainButton"
+        }
+        
+        struct Level {
+            static let timeToComplete = 60
+        }
+        
         struct MasterLayerPadding {
             static let width:CGFloat = 15.0
             static let height:CGFloat = 15.0
@@ -40,11 +49,16 @@ class ViewController: UIViewController {
         struct ScrollingMsgs {
             static let alertMsg = "ALERT!!! .... Hull Breach .... Plug holes to avoid oxygen loss .... ALERT!!!!"
             static let successMsg = "Well Done!!! You saved thousands of lives today!!"
+            static let levelFailedMsg = "Level Failed"
         }
         
         struct ShakeValues {
             static let shakeCount = 20
             static let shakeDist = 10
+        }
+        
+        struct Misc {
+            static let strobeAlpha = 0.5
         }
     }
     
@@ -80,14 +94,13 @@ class ViewController: UIViewController {
     var glass:UIImageView!
     
     // Oxygen Tank
-    var tank: OxygenTank!
+    var tank: OxygenTank?
     
     // Master Foreground Frame (used for initial shake)
     var masterFGFrame:CGRect!
     
     // Audio Controller
-    var audioController: AudioController!
-    
+    var audioController: AudioController?
     
     
     
@@ -138,7 +151,7 @@ class ViewController: UIViewController {
         // Shake the screen for the initial explosion
         let time = dispatch_time(DISPATCH_TIME_NOW, 4)
         dispatch_after(time, dispatch_get_main_queue(), {
-            self.audioController.playSound(.Explosion)
+            self.audioController?.playSound(.Explosion)
             self.shakeScreen()
         })
         
@@ -152,11 +165,10 @@ class ViewController: UIViewController {
 
     private func createOxygenTank () {
         tank = OxygenTank (frame: CGRectMake(CGRectGetWidth(self.shipLayer.frame) - 100,
-            CGRectGetMidY(self.shipLayer.frame) - 115, 50, 200), levelDuration:60)
-        tank.delegate = self
-        shipLayer.addSubview(tank)
+            CGRectGetMidY(self.shipLayer.frame) - 115, 50, 200), levelDuration:Constants.Level.timeToComplete)
+        tank?.delegate = self
+        shipLayer.addSubview(tank!)
         
-        tank.beginCountdown()
     }
     
     private func createStarfield () {
@@ -180,6 +192,7 @@ class ViewController: UIViewController {
     
     private func createTiles () {
         tiles = []
+        platforms = []
         
         // Shuffle the array of letters
         let randomLetters = newShuffledArray(Constants.Tiles.letters)
@@ -315,14 +328,15 @@ class ViewController: UIViewController {
     var timesShaken = 0
     private func shakeScreen () {
         var mainF = masterForegroundLayer.frame
-        if timesShaken > 20 {
+        if timesShaken > Constants.ShakeValues.shakeCount {
             self.masterForegroundLayer.frame = self.masterFGFrame
             createHoles ()
-            audioController.playSound(.GlassBreak)
-            audioController.playSound(.Alarm)
-            audioController.playSound(.Wind)
+            audioController?.playSound(.GlassBreak)
+            audioController?.playSound(.Alarm)
+            audioController?.playSound(.Wind)
             createScrollingAlert()
             activateTiles ()
+            tank?.beginCountdown()
             
             self.strobeTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("switchStrobe:"), userInfo: nil, repeats: true)
             return
@@ -351,7 +365,7 @@ class ViewController: UIViewController {
         
         if self.strobeView.alpha == 0 {
             UIView.animateWithDuration(0.1, animations: { () -> Void in
-                self.strobeView.alpha = 0.5
+                self.strobeView.alpha = CGFloat(Constants.Misc.strobeAlpha)
             })
         } else {
             UIView.animateWithDuration(0.1, animations: { () -> Void in
@@ -365,7 +379,9 @@ class ViewController: UIViewController {
         self.strobeView.alpha = 0
         strobeTimer?.invalidate()
         
-        self.tank.haltCountdown()
+        audioController?.stopAllSounds()
+        
+        self.tank?.reset()
         for hole in self.holes {
             hole.createPop()
         }
@@ -373,10 +389,45 @@ class ViewController: UIViewController {
     }
     
     private func playFailure() {
-
+        audioController?.stopAllSounds()
+        
+        let fadeToBlackView = UIView (frame: self.view.bounds)
+        fadeToBlackView.backgroundColor = UIColor.blackColor()
+        fadeToBlackView.alpha = 0
+        self.view.addSubview(fadeToBlackView)
+        UIView .animateWithDuration(0.5, animations: { () -> Void in
+            fadeToBlackView.alpha = 1
+            }) { (done) -> Void in
+                let endLabel = UILabel (frame: fadeToBlackView.bounds)
+                endLabel.textAlignment = .Center
+                endLabel.font = UIFont.systemFontOfSize(40)
+                endLabel.text = Constants.ScrollingMsgs.levelFailedMsg
+                endLabel.textColor = UIColor.redColor()
+                fadeToBlackView.addSubview(endLabel)
+                
+                let tryAgainButton = UIButton (frame: CGRectMake (CGRectGetMidX(fadeToBlackView.frame) - 97,
+                    CGRectGetMaxY(fadeToBlackView.frame) - 80, 194, 61 ))
+                tryAgainButton.setImage(UIImage(named: Constants.Assets.tryAgainButton), forState: .Normal)
+                tryAgainButton.addTarget(self, action: "tryAgainPressed:", forControlEvents: .TouchUpInside)
+                fadeToBlackView.addSubview(tryAgainButton)
+        }
     }
 
+    func tryAgainPressed (button: UIButton) {
+        
+        audioController?.stopAndReset()
+        timesShaken = 0
+        for v in self.view.subviews {
+            v.removeFromSuperview()
+        }
+        self.viewDidLoad()
+        
+    }
+
+
 }
+
+
 
 
 // -----------------------------------------------------------------------------
@@ -412,6 +463,7 @@ extension ViewController : LetterTileDelegate {
         }
         
         // It did not plug any holes. Return it to its location
+        
         returnActiveTile()
     }
     
@@ -427,6 +479,7 @@ extension ViewController : LetterTileDelegate {
                 tile.center = pos
                 activeTile = nil
                 startLoc = nil
+                audioController?.playSound(.Notice)
             }
         }
     }

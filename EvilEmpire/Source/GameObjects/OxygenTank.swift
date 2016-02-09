@@ -44,6 +44,7 @@ class OxygenTank: UIView {
     private var isRed = false
     
     private var colorTimer:NSTimer?
+    private var flashTimer:NSTimer?
     
     var delegate: OxygenTankDelegate?
 
@@ -52,12 +53,8 @@ class OxygenTank: UIView {
         self.init (frame: frame)
         duration = levelDuration
         
-        let delay = Double(duration) * 0.66 * Double(NSEC_PER_SEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
-            self.colorTimer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("switchColor:"), userInfo: nil, repeats: true)
-            
-        })
+        self.flashTimer = NSTimer.scheduledTimerWithTimeInterval(Double(duration) * 0.66, target: self, selector: Selector("startSwitchColor:"), userInfo: nil, repeats: false)
+        
     }
     
     // MARK: - Init Functions
@@ -95,19 +92,34 @@ class OxygenTank: UIView {
             f.origin.y = y
             self.level.frame = f
             }) { (done) -> Void in
-                self.delegate?.tankDepleted()
+                if done {
+                    self.delegate?.tankDepleted()
+                }
                 self.haltCountdown ()
         }
     }
     
     func haltCountdown () {
+        flashTimer?.invalidate()
+        flashTimer = nil
         colorTimer?.invalidate()
         colorTimer = nil
         self.layer.removeAllAnimations()
     }
     
+    func reset () {
+        haltCountdown ()
+        level.removeFromSuperview()
+        level = UIView (frame: CGRectMake (10, 20, self.frame.size.width/3, self.frame.size.height - 30))
+        level.backgroundColor = UIColor.blueColor()
+        self.insertSubview(level, atIndex: 0)
+    }
+    
 
     // MARK: - Private Functions
+    func startSwitchColor(timer : NSTimer) {
+        self.colorTimer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("switchColor:"), userInfo: nil, repeats: true)
+    }
 
     func switchColor(timer : NSTimer) {
         

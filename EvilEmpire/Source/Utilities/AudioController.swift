@@ -17,6 +17,7 @@ enum SoundType: Int {
     case GlassBreak
     case Alarm
     case Wind
+    case Notice
     
     // File name for the audio file to be used
     var fileName: String {
@@ -29,6 +30,8 @@ enum SoundType: Int {
                 return "RedAlert"
             case .Wind:
                 return "Wind"
+            case .Notice:
+                return "notice"
         }
     }
     
@@ -36,7 +39,7 @@ enum SoundType: Int {
     // to allow for other types
     var fileType: String {
         switch self {
-            case .Explosion, .GlassBreak, .Alarm, .Wind:
+            case .Explosion, .GlassBreak, .Alarm, .Wind, .Notice:
                 return "mp3"
         }
     }
@@ -44,9 +47,7 @@ enum SoundType: Int {
     // Number of loops to be played for each effect
     var numLoops: Int {
         switch self {
-            case .Explosion:
-                return 0
-            case .GlassBreak:
+            case .Explosion, .GlassBreak, .Notice:
                 return 0
             case .Alarm:
                 return 4
@@ -55,7 +56,7 @@ enum SoundType: Int {
         }
     }
     
-    static let allValues = [Explosion, GlassBreak, Alarm, Wind]
+    static let allValues = [Explosion, GlassBreak, Alarm, Wind, .Notice]
 }
 
 // -----------------------------------------------------------------------------
@@ -105,6 +106,43 @@ class AudioController {
                 player.currentTime = 0
             } else {
                 player.play()
+            }
+        }
+    }
+    
+    /**
+     Stop the sound of the given type
+     - parameter type: type of sound to be stopped
+     
+     */
+    func stopSound (type: SoundType) {
+        
+        if let player = audio[type] {
+            player.stop()
+        }
+    }
+    
+    /**
+     Stop all sounds from playing.
+     
+     */
+    func stopAllSounds () {
+        for type in SoundType.allValues {
+            if let player = audio[type] {
+                player.stop()
+            }
+        }
+    }
+    
+    /**
+     Stop all sounds and reset their timers
+     
+     */
+    func stopAndReset () {
+        for type in SoundType.allValues {
+            if let player = audio[type] {
+                player.stop()
+                player.currentTime = 0
             }
         }
     }

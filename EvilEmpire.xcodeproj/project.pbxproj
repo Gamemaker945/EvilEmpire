@@ -19,6 +19,7 @@
 		9C6284E31C63B87200D726DD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6284E21C63B87200D726DD /* Utilities.swift */; };
 		9CE975421C68ED4300678BE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE975411C68ED4300678BE7 /* QuartzCore.framework */; };
 		9CE975441C68F7BB00678BE7 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE975431C68F7BB00678BE7 /* AudioController.swift */; };
+		9CE975461C6A312100678BE7 /* notice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9CE975451C6A312100678BE7 /* notice.mp3 */; };
 		AC3FBC301C650B4B00F28BFA /* ScrollingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FBC2F1C650B4B00F28BFA /* ScrollingAlert.swift */; };
 		AC3FBC331C6512CD00F28BFA /* triple_dot_digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC3FBC321C65122100F28BFA /* triple_dot_digital-7.ttf */; };
 		AC3FBC351C6568B500F28BFA /* OxygenTank.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FBC341C6568B500F28BFA /* OxygenTank.swift */; };
@@ -66,6 +67,7 @@
 		9C6284E21C63B87200D726DD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		9CE975411C68ED4300678BE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9CE975431C68F7BB00678BE7 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		9CE975451C6A312100678BE7 /* notice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = notice.mp3; sourceTree = "<group>"; };
 		AC3FBC2F1C650B4B00F28BFA /* ScrollingAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollingAlert.swift; sourceTree = "<group>"; };
 		AC3FBC321C65122100F28BFA /* triple_dot_digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "triple_dot_digital-7.ttf"; sourceTree = "<group>"; };
 		AC3FBC341C6568B500F28BFA /* OxygenTank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OxygenTank.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		AC3FBC361C666B3600F28BFA /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9CE975451C6A312100678BE7 /* notice.mp3 */,
 				AC3FBC431C6984D400F28BFA /* Explosion.mp3 */,
 				AC3FBC441C6984D400F28BFA /* RedAlert.mp3 */,
 				AC3FBC451C6984D400F28BFA /* Wind.mp3 */,
@@ -336,6 +339,7 @@
 				AC3FBC461C6984D400F28BFA /* Explosion.mp3 in Resources */,
 				9C62845D1C60F85100D726DD /* Assets.xcassets in Resources */,
 				AC3FBC381C666B4700F28BFA /* glassBreak.mp3 in Resources */,
+				9CE975461C6A312100678BE7 /* notice.mp3 in Resources */,
 				AC3FBC471C6984D400F28BFA /* RedAlert.mp3 in Resources */,
 				9C62845B1C60F85100D726DD /* Main.storyboard in Resources */,
 			);
