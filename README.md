@@ -19,8 +19,11 @@ A few notes about the project:
    would have done even better and allowed for cooler effects. I am still learning
    this toolset so I stuck with what I know.
 
-3. Excuse the art.  :)  I made what I can. My artistic skills are limited.
+3. This is not device optimized. In its current state, it is best viewed in an
+iPhone 6 or 6+. 
 
-4. Even if not chosen, I would love to hear your comments. I am always learning
+4. Excuse the art.  :)  I made what I can. My artistic skills are limited.
+
+5. Even if not chosen, I would love to hear your comments. I am always learning
    and always value feedback.
 
